@@ -19,6 +19,10 @@ if !exists('g:presenting_top_margin')
   let g:presenting_top_margin = 0
 endif
 
+if !exists('g:presenting_cursor_location')
+  let g:presenting_cursor_location = "gg"
+endif
+
 " Main logic / start the presentation {{{
 function! s:Start()
   if g:presenting_vim_using == 1
@@ -105,8 +109,8 @@ function! s:ShowPage(page_no)
   setlocal nolist
   call s:UpdateStatusLine()
 
-  " move cursor to the top
-  execute ":normal! gg"
+  " move cursor to location
+  execute ":normal! " . g:presenting_cursor_location
 endfunction
 
 function! s:NextPage(count)
